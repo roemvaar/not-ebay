@@ -1,2 +1,2 @@
 # not-ebay
-Web service to post articles
+Web service that facilitates consumer-to-consumer sales
