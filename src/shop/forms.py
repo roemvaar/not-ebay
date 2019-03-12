@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from shop.models import Product
 
 
 class UserForm(forms.ModelForm):
@@ -17,3 +18,8 @@ class UserForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError("The passwords do not match!")
+
+
+# class Product(forms.ModelForm):
+#     class Meta():
+#         model = Product

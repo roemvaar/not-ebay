@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from shop.forms import UserForm
 
@@ -45,6 +46,8 @@ def user_login(request):
                 return HttpResponse('ACCOUNT NOT ACTIVE')
         else:
             return HttpResponse('Invalid login details supplied')
+    else:
+        return render(request, 'shop/login.html', {})
 
 
 @login_required
@@ -55,8 +58,8 @@ def user_logout(request):
 
 @login_required
 def sell_item(request):
-    pass
+    return render(request, 'shop/sell_item.html')
 
 
 def buy(request):
-    pass
+    return render(request, 'shop/buy.html')

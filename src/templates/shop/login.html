@@ -1,7 +1,7 @@
 {% extends "shop/base.html" %} {% block body_block %}
 <div class="jumbotron">
   <h1>Please Login</h1>
-  <form action="{% url 'not_ebay:user_login' %}" method="POST">
+  <form action="{% url 'shop:user_login' %}" method="POST">
     {% csrf_token %}
     <label for="username">Username: </label>
     <input type="text" name="username" placeholder="Enter Username" />
