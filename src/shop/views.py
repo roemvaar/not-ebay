@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from shop.forms import UserForm
 
 
 def index(request):
@@ -13,9 +14,9 @@ def register(request):
     registered = False
 
     if request.method == "POST":
-    user_form = UserForm(data=request.POST)
+        user_form = UserForm(data=request.POST)
 
-       if user_form.is_valid():
+        if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()
@@ -40,9 +41,8 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
-
-                else:
-                    return HttpResponse('ACCOUNT NOT ACTIVE')
+            else:
+                return HttpResponse('ACCOUNT NOT ACTIVE')
         else:
             return HttpResponse('Invalid login details supplied')
 
