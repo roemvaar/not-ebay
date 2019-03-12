@@ -1,0 +1,14 @@
+{% extends 'shop/base.html' %} {% load staticfiles %} {% block body_block %}
+
+<div class="jumbotron">
+  <h1>Sell a product!</h1>
+
+  <h3>Fill out the form to sell a product:</h3>
+
+  <form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ newproduct_form.as_p }}
+    <input type="submit" name="" value="Submit" />
+  </form>
+</div>
+{% endblock %}
