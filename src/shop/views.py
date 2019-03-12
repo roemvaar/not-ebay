@@ -4,9 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from shop.forms import UserForm, ProductForm
-from django.views.generic import ListView
-from shop.models import Product
-from django.utils import timezone
 
 
 def index(request):
@@ -70,8 +67,5 @@ def sell_item(request):
     return render(request, 'shop/sell_item.html', {'newproduct_form': newproduct_form})
 
 
-class ProductListView(ListView):
-    model = Product
-
-    def get_queryset(self):
-        return Product.objects.filter(date__lte=timezone.now()).order_by('-date')
+def buy(request):
+    return render(request, 'shop/buy.html')
