@@ -3,7 +3,10 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
-from shop.forms import UserForm, NewProductForm
+from shop.forms import UserForm, ProductForm
+from django.views.generic import ListView
+from shop.models import Product
+from django.utils import timezone
 
 
 def index(request):
@@ -58,14 +61,17 @@ def user_logout(request):
 
 @login_required
 def sell_item(request):
-    newproduct_form = NewProductForm(data=request.POST)
-
     if request.method == 'POST':
+        newproduct_form = ProductForm(data=request.POST)
+
         if newproduct_form.is_valid():
             new_product = newproduct_form.save()
 
     return render(request, 'shop/sell_item.html', {'newproduct_form': newproduct_form})
 
 
-def buy(request):
-    return render(request, 'shop/buy.html')
+class ProductListView(ListView):
+    model = Product
+
+    def get_queryset(self):
+        return Product.objects.filter(date__lte=timezone.now()).order_by('-date')
