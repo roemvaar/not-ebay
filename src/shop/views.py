@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from shop.forms import UserForm, ProductForm
+from shop.models import Product
 
 
 def index(request):
@@ -68,4 +69,5 @@ def sell_item(request):
 
 
 def buy(request):
-    return render(request, 'shop/buy.html')
+    product_list = Product.objects.order_by('date')
+    return render(request, 'shop/buy.html', {'product_list': product_list})

@@ -1,5 +1,31 @@
 {% extends 'shop/base.html' %} {% block body_block %}
 <div class="jumbotron">
   <h1>Buy products!</h1>
+
+  <div>
+    {% if product_list %}
+    <table class="table">
+      <thead>
+        <th>Product</th>
+        <th>Seller</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Date</th>
+      </thead>
+    </table>
+
+    {% for product in product_list %}
+    <tr>
+      <td>{{ product.product_name }}</td>
+      <td>{{ product.seller }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.date }}</td>
+    </tr>
+    {% endfor %} {% else %}
+    <p>No products!</p>
+    {% endif %}
+  </div>
 </div>
+
 {% endblock %}
