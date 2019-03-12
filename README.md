@@ -9,7 +9,7 @@ Web service that facilitates consumer-to-consumer sales
 * python==3.5.4
 * django==1.11.3
 
-### List of implemented requirements
+### List of implemented tasks
 
 * User registration
 * User login and logout
