@@ -20,6 +20,14 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError("The passwords do not match!")
 
 
-# class Product(forms.ModelForm):
-#     class Meta():
-#         model = Product
+class NewProductForm(forms.ModelForm):
+    class Meta():
+        model = Product
+        fields = '__all__'
+
+        widgets = {
+            'product_name': forms.TextInput(attrs={'class': 'textinputclass'}),
+            'description': forms.Textarea(attrs={'class': 'editable medium-editor-textarea'}),
+            'price': forms.NumberInput(attrs={'class': 'numberinputclass'}),
+            'date': forms.DateInput(attrs={'class': 'dateinputclass'})
+        }

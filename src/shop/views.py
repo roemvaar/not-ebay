@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
-from shop.forms import UserForm
+from shop.forms import UserForm, NewProductForm
 
 
 def index(request):
@@ -58,7 +58,13 @@ def user_logout(request):
 
 @login_required
 def sell_item(request):
-    return render(request, 'shop/sell_item.html')
+    newproduct_form = NewProductForm(data=request.POST)
+
+    if request.method == 'POST':
+        if newproduct_form.is_valid():
+            new_product = newproduct_form.save()
+
+    return render(request, 'shop/sell_item.html', {'newproduct_form': newproduct_form})
 
 
 def buy(request):
