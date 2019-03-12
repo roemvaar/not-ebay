@@ -1,6 +1,6 @@
 # not-ebay
 
-video explanation: [YouTube Video]()
+video explanation: [YouTube Video](https://youtu.be/HIQgziQgC6c)
 
 ### Introduction
 Web service that facilitates consumer-to-consumer sales
