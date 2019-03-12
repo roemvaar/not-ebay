@@ -5,24 +5,29 @@
   <div>
     {% if product_list %}
     <table class="table">
-      <thead>
-        <th>Product</th>
-        <th>Seller</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Date</th>
+      <thead class="thead-dark">
+        <th scope="col">Product</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Date</th>
+        <th scope="col">Buy</th>
       </thead>
+
+      <tbody>
+        {% for product in product_list %}
+        <tr>
+          <td>{{ product.product_name }}</td>
+          <td>{{ product.seller }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.date }}</td>
+          <td><a href="{% url 'shop:payment' %}">Pay</a></td>
+        </tr>
+        {% endfor %} {% else %}
+      </tbody>
     </table>
 
-    {% for product in product_list %}
-    <tr>
-      <td>{{ product.product_name }}</td>
-      <td>{{ product.seller }}</td>
-      <td>{{ product.description }}</td>
-      <td>{{ product.price }}</td>
-      <td>{{ product.date }}</td>
-    </tr>
-    {% endfor %} {% else %}
     <p>No products!</p>
     {% endif %}
   </div>

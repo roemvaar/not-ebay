@@ -71,3 +71,7 @@ def sell_item(request):
 def buy(request):
     product_list = Product.objects.order_by('date')
     return render(request, 'shop/buy.html', {'product_list': product_list})
+
+
+def payment(request):
+    return render(request, 'shop/payment.html')
